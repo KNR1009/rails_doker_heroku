@@ -32,7 +32,7 @@ jobs:
       - ruby/install-deps
       # ここでエラーが発生している
       - run:
-          name: データベースの作成
+          name: create Database
           command: bundle exec rails db:create
       - run:
           name: Database setup
