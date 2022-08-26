@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
     working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
@@ -15,7 +15,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
       - image: circleci//postgres:14.4.0
         environment:
           POSTGRES_ROOT_PASSWORD: password
