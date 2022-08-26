@@ -19,6 +19,7 @@ jobs:
       - image: circleci/postgres
         environment:
           POSTGRES_ROOT_PASSWORD: password
+          POSTGRES_DATABASE: myapp_test
           POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
     environment:
