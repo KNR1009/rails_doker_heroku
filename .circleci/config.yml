@@ -26,6 +26,7 @@ jobs:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       RAILS_ENV: test
+      POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
