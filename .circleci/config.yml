@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby
+      - image: circleci/ruby:2.7
     working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
