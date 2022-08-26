@@ -32,8 +32,8 @@ jobs:
       - ruby/install-deps
       # ここでエラーが発生している
       - run:
-          name: データベースのセットアップ
-          command: bundle exec rails db:schema:load --trace
+          name: データベースの作成
+          command: bundle exec rails db:create
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
