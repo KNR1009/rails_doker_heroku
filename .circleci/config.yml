@@ -31,9 +31,6 @@ jobs:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
 
       - run:
           name: DB の待機
