@@ -31,7 +31,7 @@ development:
 test:
   <<: *default
   database: myapp_test
-  host: <%= ENV['DB_HOST'] %>
+  host: 127.0.0.1
 
 production:
   <<: *default
