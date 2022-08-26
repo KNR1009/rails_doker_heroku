@@ -16,20 +16,31 @@ jobs:
     docker:
       - image: cimg/ruby:2.7-node
       - image: cimg/postgres:14.0
-        environment:
-          POSTGRES_ROOT_PASSWORD: password
+        environment: # add POSTGRES environment variables.
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+    # Ruby/Rails 固有の環境変数をプライマリコンテナに適用します。
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
-      APP_DATABASE_HOST: "127.0.0.1"
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: password
       RAILS_ENV: test
-      POSTGRES_DB: myapp_test
-    working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+
+      - run:
+          name: DB の待機
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: データベースのセットアップ
+          command: bundle exec rails db:schema:load --trace
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
