@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    render json: "aaa"
+    render json: @post
   end
 
   # POST /posts
