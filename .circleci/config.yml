@@ -12,44 +12,19 @@ jobs:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
-  test:
-    docker:
-      - image: circleci/ruby:2.7
-      - image: circleci/postgres:11.6-alpine
-        environment:
-          POSTGRES_ROOT_PASSWORD: password
-          POSTGRES_USER: postgres
-    environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-      APP_DATABASE_HOST: "127.0.0.1"
-      RAILS_ENV: test
-      POSTGRES_DB: myapp_test
-    working_directory: ~/rails-docker-heroku
-    steps:
-      - checkout:
-          path: ~/rails-docker-heroku
-      - ruby/install-deps
-      - run:
-          name: Database setup
-          command: bundle exec rails db:migrate
-      - run:
-          name: test
-          command: bundle exec rspec
-
   # test:
   #   docker:
   #     - image: circleci/ruby:2.7
-  #     - image: circleci//postgres:14.4.0
+  #     - image: circleci/postgres:11.6-alpine
   #       environment:
   #         POSTGRES_ROOT_PASSWORD: password
-  #         POSTGRES_DATABASE: myapp_test
   #         POSTGRES_USER: postgres
   #   environment:
   #     BUNDLE_JOBS: "3"
   #     BUNDLE_RETRY: "3"
   #     APP_DATABASE_HOST: "127.0.0.1"
   #     RAILS_ENV: test
+  #     POSTGRES_DB: myapp_test
   #   working_directory: ~/rails-docker-heroku
   #   steps:
   #     - checkout:
@@ -67,6 +42,6 @@ workflows:
   build_test_and_deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
+      # - test:
+      #     requires:
+      #       - build
