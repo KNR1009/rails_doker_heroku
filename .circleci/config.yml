@@ -12,11 +12,10 @@ jobs:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
-
   test:
     docker:
-      - image: circleci/ruby:2.7-node
-      - image: circleci/postgres:11.6-alpine
+      - image: circleci/ruby:2.7
+      - image: circleci/postgres:14.4.0
         environment:
           POSTGRES_ROOT_PASSWORD: password
           POSTGRES_DATABASE: myapp_test
