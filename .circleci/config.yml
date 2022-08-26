@@ -16,7 +16,7 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:2.7
-      - image: cimg/postgres:14.4.0
+      - image: circleci/postgres
         environment:
           POSTGRES_ROOT_PASSWORD: password
           POSTGRES_DATABASE: myapp_test
