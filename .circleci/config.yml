@@ -6,17 +6,16 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7
+      - image: cimg/ruby:2.7-node
     working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
-
   test:
     docker:
-      - image: circleci/ruby:2.7
-      - image: circleci//postgres:14.4.0
+      - image: cimg/ruby:2.7-node
+      - image: cimg/postgres:14.0
         environment:
           POSTGRES_ROOT_PASSWORD: password
           POSTGRES_DATABASE: myapp_test
@@ -31,6 +30,10 @@ jobs:
       - checkout:
           path: ~/rails-docker-heroku
       - ruby/install-deps
+      # ここでエラーが発生している
+      - run:
+          name: create Database
+          command: bundle exec rails db:create
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
