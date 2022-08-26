@@ -24,6 +24,7 @@ jobs:
       BUNDLE_RETRY: "3"
       APP_DATABASE_HOST: "127.0.0.1"
       RAILS_ENV: test
+      POSTGRES_DB: myapp_test
     working_directory: ~/rails-docker-heroku
     steps:
       - checkout:
